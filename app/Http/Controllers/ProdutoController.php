@@ -19,6 +19,10 @@ class ProdutoController extends Controller
 	public function new(){
 		$titulo = 'Nono produto';
 		$categorias = Categoria::all();
+		if(sizeof($categorias) == 0){
+			session()->flash('erro', 'Cadastre ao menos uma categoria');
+			return redirect('categorias');
+		}
 		return view('produtos/form', compact('titulo', 'categorias'));
 	}
 
@@ -106,7 +110,8 @@ class ProdutoController extends Controller
 			'nome.max' => '50 caracteres maximos permitidos.',
 			'categoria_id.required' => 'O campo categoria é obrigatório.',
 			'valor.required' => 'O campo valor é obrigatório.',
-			'cfop_interno.required' => 'O campo CFOP é obrigatório.',
+			'cfop_interno.required' => 'O campo CFOP interno é obrigatório.',
+			'cfop_externo.required' => 'O campo CFOP externo é obrigatório.',
 			'codigo_barras.required' => 'O campo Código de barras é obrigatório.',
 			'ncm.required' => 'O campo Código de ncm é obrigatório.',
 			'unidade_venda.required' => 'O campo unidade de venda é obrigatório.',

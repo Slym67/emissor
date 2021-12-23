@@ -82,6 +82,15 @@ function deletePag(rand){
 	_fatura = temp
 }
 
+$('#forma_pagamento').change(() => {
+	$('#valor_pag').val(formatReal(totaliza()))
+	var data = new Date();
+	var dia = String(data.getDate()).padStart(2, '0');
+	var mes = String(data.getMonth() + 1).padStart(2, '0');
+	var ano = data.getFullYear();
+	dataAtual = dia + '/' + mes + '/' + ano;
+	$('#data').val(dataAtual)
+})
 $('#adicionar-pagamento').click(() => {
 	let forma_pagamento = $('#forma_pagamento').val()
 	let valor_pag = $('#valor_pag').val().replace(',', '.')

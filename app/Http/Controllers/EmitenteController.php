@@ -12,6 +12,10 @@ class EmitenteController extends Controller
 		try{
 			$emitente = Emitente::first();
 			$cidades = Cidade::all();
+			if(sizeof($cidades) == 0){
+				session()->flash('erro', 'Cadastre ao menos uma cidade');
+				return redirect('cidades');
+			}
 			$titulo = 'Emitente';
 			return view('emitente/index', compact('emitente', 'cidades', 'titulo'));
 		}catch(\Exception $e){

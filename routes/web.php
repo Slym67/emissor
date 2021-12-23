@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('default');
+	return redirect('/vendas');
 });
 
 Route::group(['prefix' => 'categorias'], function(){
@@ -63,11 +63,24 @@ Route::group(['prefix' => 'emitente'], function(){
 Route::group(['prefix' => 'vendas'], function(){
 	Route::get('/', 'VendaController@index');
 	Route::get('/new', 'VendaController@new');
-	Route::get('/ver/{id}', 'VendaController@ver');
+	Route::get('/show/{id}', 'VendaController@show');
 	Route::post('/save', 'VendaController@save');
 });
 
 Route::group(['prefix' => 'notafiscal'], function(){
 	Route::get('/gerarXml/{id}', 'NotaFiscalController@gerarXml');
+	Route::post('/transmitir', 'NotaFiscalController@transmitir');
+
+	Route::get('/imprimir/{id}', 'NotaFiscalController@imprimir');
+	Route::get('/imprimirSimples/{id}', 'NotaFiscalController@imprimirSimples');
+	Route::get('/imprimirCorrecao/{id}', 'NotaFiscalController@imprimirCorrecao');
+	Route::get('/imprimirCancelamento/{id}', 'NotaFiscalController@imprimirCancelamento');
+
+	Route::get('/download/{id}', 'NotaFiscalController@download');
+
+	Route::post('/cartaCorrecao', 'NotaFiscalController@cartaCorrecao');
+	Route::post('/cancenlarNFe', 'NotaFiscalController@cancenlarNFe');
+
+
 });
 

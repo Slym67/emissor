@@ -8,13 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Venda extends Model
 {
     use HasFactory;
-	protected $fillable = ['valor', 'cliente_id', 'chave', 'numero_nfe', 'estado'];
+    protected $fillable = [
+        'valor', 'cliente_id', 'chave', 'numero_nfe', 'estado', 'sequencia_evento'
+    ];
 
-	public function cliente(){
-		return $this->belongsTo(Cliente::class, 'cliente_id');
-	}
+    public function cliente(){
+        return $this->belongsTo(Cliente::class, 'cliente_id');
+    }
 
-	public static function formasPagamento(){
+    public static function formasPagamento(){
         return [
             '01' => 'Dinheiro',
             '02' => 'Cheque',
@@ -34,8 +36,25 @@ class Venda extends Model
         ];
     }
 
+    public static function ultimoNumeroNFe(){
+        $venda = Venda::
+        orderBy('numero_nfe', 'desc')
+        ->first();
+
+        $emitente = Emitente::first();
+
+        if($emitente == null){
+            return $venda->numero_nfe;
+        }
+
+        if($emitente->ultimo_numero_nfe > $venda->numero_nfe){
+            return $emitente->ultimo_numero_nfe+1;
+        }
+        return $venda->numero_nfe+1;
+    }
+
     public static function getFormaPagamento($forma){
-    	return Venda::formasPagamento()[$forma];
+        return Venda::formasPagamento()[$forma];
     }
 
     public function itens(){

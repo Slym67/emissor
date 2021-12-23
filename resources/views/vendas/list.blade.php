@@ -64,7 +64,7 @@
 								<form id="form-delete" action="/vendas/delete/{{$v->id}}" method="post">
 									@csrf
 									@method('delete')
-									<a class="btn btn-sm btn-primary" href="/vendas/ver/{{$v->id}}">
+									<a class="btn btn-sm btn-primary" href="/vendas/show/{{$v->id}}">
 										<i class="la la-file"></i>	
 									</a>
 									@if($v->estado == 'Novo' || $v->estado == 'Rejeitado')

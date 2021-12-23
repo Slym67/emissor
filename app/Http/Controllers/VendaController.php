@@ -29,6 +29,16 @@ class VendaController extends Controller
             $produtos = Produto::
             orderBy('nome', 'desc')
             ->get();
+
+            if(sizeof($clientes) == 0){
+                session()->flash('erro', 'Cadastre ao menos um cliente');
+                return redirect('clientes');
+            }
+
+            if(sizeof($produtos) == 0){
+                session()->flash('erro', 'Cadastre ao menos um produto');
+                return redirect('produtos');
+            }
             $titulo = 'Nova venda';
             return view('vendas/form', compact('titulo', 'clientes', 'produtos'));
         }catch(\Exception $e){
@@ -74,7 +84,7 @@ class VendaController extends Controller
         }
     }
 
-    public function ver($id){
+    public function show($id){
         try{
             $venda = Venda::find($id);
 

@@ -22,6 +22,10 @@ class ClienteController extends Controller
 		$cidades = Cidade::
 		orderBy('nome', 'desc')
 		->get();
+		if(sizeof($cidades) == 0){
+			session()->flash('erro', 'Cadastre ao menos uma cidade');
+			return redirect('cidades');
+		}
 		return view('clientes/form', compact('titulo', 'cidades'));
 	}
 

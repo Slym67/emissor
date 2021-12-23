@@ -22,6 +22,7 @@ class CreateVendasTable extends Migration
 
             $table->decimal('valor', 10, 2);
             $table->integer('numero_nfe');
+            $table->integer('sequencia_evento')->default(0);
             $table->string('chave', 44);
 
             $table->enum('estado', ['Novo', 'Rejeitado', 'Cancelado', 'Aprovado']);
