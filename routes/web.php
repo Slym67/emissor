@@ -79,7 +79,7 @@ Route::group(['prefix' => 'notafiscal'], function(){
 	Route::get('/download/{id}', 'NotaFiscalController@download');
 
 	Route::post('/cartaCorrecao', 'NotaFiscalController@cartaCorrecao');
-	Route::post('/cancenlarNFe', 'NotaFiscalController@cancenlarNFe');
+	Route::post('/cancelarNFe', 'NotaFiscalController@cancelarNFe');
 
 
 });
