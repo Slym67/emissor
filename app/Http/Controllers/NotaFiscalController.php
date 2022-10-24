@@ -197,7 +197,7 @@ class NotaFiscalController extends Controller
 		}
 	}
 
-	public function cancenlarNFe(Request $request){
+	public function cancelarNFe(Request $request){
 		try{
 			$venda = Venda::find($request->venda_id);
 			$emitente = Emitente::first();

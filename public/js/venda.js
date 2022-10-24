@@ -50,11 +50,11 @@ function montaLinhaProduto(item){
 }
 
 function totaliza(){
-	let soma = 0;
+	let total = 0;
 	_itens.map((x) => {
-		soma += parseFloat(x.valor)
+		total += parseFloat(x.valor * x.quantidade)
 	})
-	return soma;
+	return total;
 }
 
 function deleteItem(rand){

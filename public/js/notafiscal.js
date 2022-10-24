@@ -74,7 +74,7 @@ $('#btn-cancelar').click(() => {
 			venda_id: venda_id,
 			justificativa: justificativa
 		}
-		$.post('/notafiscal/cancenlarNFe', cancelamento)
+		$.post('/notafiscal/cancelarNFe', cancelamento)
 		.done((success) => {
 			console.log(success)
 			swal("Sucesso", "Evento registrado", "success")
